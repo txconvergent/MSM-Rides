@@ -234,6 +234,13 @@
                           'Error: Your browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
+  
+  var input = document.getElementById('from');
+  var options = {
+    componentRestrictions: {country: 'us'}
+  };
+
+  autocomplete = new google.maps.places.Autocomplete(input, options);
   </script>
   <script>
     $('#menu-icon').on('click', function(e) {
