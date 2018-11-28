@@ -133,17 +133,9 @@
           <div class="col">
             <br />
             <center><img src="leap_logo.png" width="100%" /></center>
+            <br />
           </div>
           <div class="col"></div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <center>
-              <button id="whereto-btn" class="btn btn-lg btn-dark" style="color: #fff;">
-                <span style="font-size: 12px;">WHERE TO?</span>
-              </button>
-            </center>
-          </div>
         </div>
       </div>
     </div>
@@ -151,107 +143,65 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div id="map"></div>
+          <h4>Choose your ride</h4>
+        <div class="list-group">
+          <!-- <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Austin to Houston</h5>
+                  <small>Today</small>
+                </div>
+                <small>Swipe purchased</small>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Houston to Dallas</h5>
+                  <small>Tomorrow</small>
+                </div>
+                <small>Swipe purchased</small>
+              </div>
+            </div>
+          </a> -->
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Austin to Dallas</h5>
+                  <small>In 2 days</small>
+                </div>
+                <small>Your driver: Bill Yang</small>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="javascript:alert('Your ride selection is confirmed!')">Choose this ride</a>
+          </a>
+        </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+              <div class="col">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Austin to Dallas</h5>
+                  <small>In 2 days</small>
+                </div>
+                <small>Your driver: Dylan Boggs</small>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="#">Choose this ride</a>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="whereto-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Where to?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="from">From</label>
-              <input class="form-control" type="text" id="from" value="">
-            </div>
-            <div class="form-group">
-              <label for="to">To</label>
-              <input class="form-control" type="text" id="to" value="">
-            </div>
-            <div class="form-group">
-              <label for="date">Date</label>
-              <input class="form-control" type="date" id="date" value="">
-            </div>
-            <div class="form-group">
-              <label for="time">Time</label>
-              <input class="form-control" type="time" id="time" value="">
-            </div>
-            <!-- DRIVERS ONLY -->
-            <div id="num-passengers-query"></div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <a href="list-rides.html" class="btn btn-primary" id="modal-submit">Find rides</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-  <!-- Replace the value of the key parameter with your own API key. -->
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFVTBRsvDLTyWsJQwuEwFP2de6xC5DHm0&callback=initMap">
-  </script>
-  <script>
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  var map, infoWindow;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 30.286249, lng: -97.737151},
-      zoom: 15
-    });
-    infoWindow = new google.maps.InfoWindow;
-
-    // Try HTML5 geolocation.
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(function(position) {
-    //     var pos = {
-    //       lat: position.coords.latitude,
-    //       lng: position.coords.longitude
-    //     };
-    //
-    //     infoWindow.setPosition(pos);
-    //     infoWindow.setContent('Location found.');
-    //     infoWindow.open(map);
-    //     map.setCenter(pos);
-    //   }, function() {
-    //     handleLocationError(true, infoWindow, map.getCenter());
-    //   });
-    // } else {
-    //   // Browser doesn't support Geolocation
-    //   handleLocationError(false, infoWindow, map.getCenter());
-    // }
-  }
-
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          'Error: The Geolocation service failed.' :
-                          'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-  }
-
-  var input = document.getElementById('from');
-  var options = {
-    componentRestrictions: {country: 'us'}
-  };
-
-  autocomplete = new google.maps.places.Autocomplete(input, options);
-  </script>
   <script>
     $('#menu-icon').on('click', function(e) {
       $('#menu-layover').toggle();
@@ -267,21 +217,14 @@
     function setRider() {
       $('#num-passengers-query').html('');
       $('#modal-submit').html('Find ride');
-      $('#modal-submit').attr('href', 'list-rides.html');
-      $('#rides').attr('href', 'rides-rider.html');
-      // $.cookie("mode", "rider");
+      $.cookie("mode", "rider");
     }
     function setDriver() {
       $('#num-passengers-query').html('<div class="form-group"><label for="numpassengers">Number of passengers</label><input class="form-control" type="number" id="numpassengers" value="1"></div>');
       $('#modal-submit').html('Submit ride');
-      $('#modal-submit').attr('href', 'javascript:confirmDriver()');
-      $('#rides').attr('href', 'rides-driver.html');
-      // $.cookie("mode", "driver");
+      $.cookie("mode", "driver");
     }
-    function confirmDriver() {
-      alert('You are confirmed to drive! Have a good trip. We\'ll notify you when you\'re paired with a rider.');
-      $('#whereto-modal').modal('hide');
-    }
+
   </script>
 </body>
 </html>
